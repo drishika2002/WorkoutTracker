@@ -168,7 +168,12 @@ a:visited {
 }
 
 .form__btn {
-  display: none;
+  /*display: none;*/
+  margin: 4rem;
+  margin-left: 10rem;
+  padding: 0.25rem;
+  width: 75%;
+  border-radius: 3px;
 }
 
 .copyright {

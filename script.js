@@ -78,6 +78,7 @@ form.addEventListener('submit', function (event) {
         autoClose: false,
         closeOnClick: false,
         className: 'cycling-popup',
+        // A custom CSS class name to assign to the popup (used for designing)
       })
     )
     .setPopupContent('WorkOut')

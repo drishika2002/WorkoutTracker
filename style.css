@@ -1,3 +1,4 @@
+/* Defining css variables */
 :root {
   --color-brand--1: #4570ff;
   --color-brand--2: #00c46a;
@@ -178,19 +179,19 @@ a:visited {
 
 .copyright {
   margin-top: auto;
-  font-size: 1.3rem;
+  font-size: 1.7rem;
   text-align: center;
   color: var(--color-light--1);
 }
 
-.twitter-link:link,
-.twitter-link:visited {
+.linkedin-link:link,
+.linkedin-link:visited {
   color: var(--color-light--1);
   transition: all 0.2s;
 }
 
-.twitter-link:hover,
-.twitter-link:active {
+.linkedin-link:hover,
+.linkedin-link:active {
   color: var(--color-light--2);
 }
 
@@ -199,13 +200,14 @@ a:visited {
   flex: 1;
   height: 100%;
   background-color: var(--color-light--1);
+  border: var(--color-dark--1) 0.25rem solid;
 }
 
 /* Popup width is defined in JS using options */
 .leaflet-popup .leaflet-popup-content-wrapper {
   background-color: var(--color-dark--1);
   color: var(--color-light--2);
-  border-radius: 5px;
+  border-radius: 0.75rem 0 0.75rem 0;
   padding-right: 0.6rem;
 }
 

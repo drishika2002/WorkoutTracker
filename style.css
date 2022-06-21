@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Mali:ital,wght@1,500&display=swap');
 /* Defining css variables */
 :root {
   --color-brand--1: #4570ff;
@@ -22,7 +23,7 @@ html {
 }
 
 body {
-  font-family: 'Manrope', sans-serif;
+  font-family: 'Mali', cursive;
   color: var(--color-light--2);
   font-weight: 400;
   line-height: 1.6;
@@ -175,6 +176,7 @@ a:visited {
   padding: 0.25rem;
   width: 75%;
   border-radius: 3px;
+  font-family: 'Mali', cursive;
 }
 
 .copyright {

@@ -127,6 +127,12 @@ class App {
     inputDistance.focus();
   }
 
+  _hideForm() {
+    //prettier-ignore
+    inputCadence.value = inputDistance.value = inputDuration.value = inputElevation.value = '';
+    form.classList.add('hidden');
+  }
+
   _toggleElevationField() {
     inputElevation.closest('.form__row').classList.toggle('form__row--hidden');
     inputCadence.closest('.form__row').classList.toggle('form__row--hidden');
@@ -186,9 +192,7 @@ class App {
     this._renderWorkout(workout);
 
     // Hide form + Clear input details fields
-
-    //prettier-ignore
-    inputCadence.value = inputDistance.value = inputDuration.value = inputElevation.value = '';
+    this._hideForm();
   }
 
   _renderWorkoutMarker(workout) {
@@ -204,7 +208,9 @@ class App {
           // A custom CSS class name to assign to the popup (used for designing)
         })
       )
-      .setPopupContent('distance')
+      .setPopupContent(
+        `${workout.type === 'running' ? '🏃‍♂️' : '🚴‍♀️'} ${workout.description}`
+      )
       .openPopup();
   }
 

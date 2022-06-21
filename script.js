@@ -169,10 +169,10 @@ class App {
 
     // Add new object to workout array
     this.#workouts.push(workout);
-    console.log(workout);
+    // console.log(workout);
 
     // Render workout on map as marker
-    this.renderWorkoutMarker(workout);
+    this._renderWorkoutMarker(workout);
 
     // Render workout on List
 
@@ -182,24 +182,23 @@ class App {
       inputDuration.value =
       inputElevation.value =
         '';
+  }
 
-    renderWorkoutMarker(workout);
-    {
-      L.marker(workout.coords)
-        .addTo(this.#map)
-        .bindPopup(
-          L.popup({
-            maxWidth: 250,
-            minWidth: 100,
-            autoClose: false,
-            closeOnClick: false,
-            className: `${workout.type}-popup`,
-            // A custom CSS class name to assign to the popup (used for designing)
-          })
-        )
-        .setPopupContent('distance')
-        .openPopup();
-    }
+  _renderWorkoutMarker(workout) {
+    L.marker(workout.coords)
+      .addTo(this.#map)
+      .bindPopup(
+        L.popup({
+          maxWidth: 250,
+          minWidth: 100,
+          autoClose: false,
+          closeOnClick: false,
+          className: `${workout.type}-popup`,
+          // A custom CSS class name to assign to the popup (used for designing)
+        })
+      )
+      .setPopupContent('distance')
+      .openPopup();
   }
 }
 

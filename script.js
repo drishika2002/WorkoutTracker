@@ -36,6 +36,7 @@ class Workout {
 }
 
 class Running extends Workout {
+  type = 'running';
   constructor(coords, distance, duration, cadence) {
     super(coords, distance, duration);
     this.cadence = cadence;
@@ -49,6 +50,7 @@ class Running extends Workout {
 }
 
 class Cycling extends Workout {
+  type = 'cycling';
   constructor(coords, distance, duration, elevationGain) {
     super(coords, distance, duration);
     this.elevationGain = elevationGain;
@@ -70,6 +72,7 @@ class App {
   // defining private instance property
   #map;
   #mapEvent;
+  #workouts = [];
 
   constructor() {
     this._getPosition();
@@ -133,6 +136,8 @@ class App {
     const type = inputType.value;
     const distance = +inputDistance.value;
     const duration = +inputDuration.value;
+    const { lat, lng } = this.#mapEvent.latlng;
+    let workout;
 
     // If workout running, create running object
     if (type === 'running') {
@@ -144,6 +149,8 @@ class App {
       ) {
         return alert('Inputs have to be positive numbers!');
       }
+
+      workout = new Running([lat, lng], distance, duration, cadence);
     }
 
     // If workout cycling, create cycling object
@@ -156,27 +163,16 @@ class App {
       ) {
         return alert('Inputs have to be positive numbers!');
       }
+
+      workout = new Cycling([lat, lng], distance, duration, elevation);
     }
 
     // Add new object to workout array
+    this.#workouts.push(workout);
+    console.log(workout);
 
     // Render workout on map as marker
-    const { lat, lng } = this.#mapEvent.latlng;
-
-    L.marker([lat, lng])
-      .addTo(this.#map)
-      .bindPopup(
-        L.popup({
-          maxWidth: 250,
-          minWidth: 100,
-          autoClose: false,
-          closeOnClick: false,
-          className: 'cycling-popup',
-          // A custom CSS class name to assign to the popup (used for designing)
-        })
-      )
-      .setPopupContent('WorkOut')
-      .openPopup();
+    this.renderWorkoutMarker(workout);
 
     // Render workout on List
 
@@ -187,7 +183,23 @@ class App {
       inputElevation.value =
         '';
 
-    // Display markers
+    renderWorkoutMarker(workout);
+    {
+      L.marker(workout.coords)
+        .addTo(this.#map)
+        .bindPopup(
+          L.popup({
+            maxWidth: 250,
+            minWidth: 100,
+            autoClose: false,
+            closeOnClick: false,
+            className: `${workout.type}-popup`,
+            // A custom CSS class name to assign to the popup (used for designing)
+          })
+        )
+        .setPopupContent('distance')
+        .openPopup();
+    }
   }
 }
 
